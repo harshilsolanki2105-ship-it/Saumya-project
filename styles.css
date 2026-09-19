@@ -634,16 +634,65 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section & Hanging Lightbulb Artwork
+   Hero Section & Dramatic Bulb Illumination Opening
    -------------------------------------------------------------------------- */
 .hero-section {
   position: relative;
   padding: 6.5rem 0 5rem;
   overflow: hidden;
   text-align: center;
+  transition: background-color 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hanging Lightbulb Motif (Logo Metaphor) */
+.hero-section.lights-off {
+  background-color: #030805 !important;
+}
+
+.hero-section.lights-on {
+  background-color: var(--bg-primary);
+}
+
+/* Darkness Veil covering hero in lights-off state */
+.hero-darkness-veil {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 120px, rgba(4, 15, 10, 0.82) 0%, rgba(2, 8, 5, 0.99) 70%);
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.3s;
+}
+
+.hero-section.lights-on .hero-darkness-veil {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Hero Content State Transitions */
+.hero-container {
+  position: relative;
+  z-index: 6;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-section.lights-off .hero-container {
+  opacity: 0.08;
+  transform: translateY(25px);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.hero-section.lights-on .hero-container {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Hanging Lightbulb Assembly (Logo Motif)
+   -------------------------------------------------------------------------- */
 .hero-hanging-bulb {
   position: absolute;
   top: 0;
@@ -652,67 +701,223 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 2;
-  pointer-events: none;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  /* Descends from above on page load */
+  animation: bulbDropFromAbove 1.3s cubic-bezier(0.18, 0.89, 0.32, 1.15) forwards;
 }
 
-.bulb-wire {
-  width: 2px;
-  height: 55px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, #1a1a1a 100%);
+@keyframes bulbDropFromAbove {
+  0% {
+    transform: translateX(-50%) translateY(-180px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-50%) translateY(0px) rotate(3deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-50%) translateY(0px) rotate(-1.5deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.bulb-cord {
+  width: 2.5px;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, #15221b 100%);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+.bulb-fixture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .bulb-socket {
-  width: 14px;
-  height: 12px;
-  background: #1e2922;
+  width: 16px;
+  height: 14px;
+  background: #1c2e24;
   border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .bulb-glass {
-  width: 32px;
-  height: 44px;
-  background: radial-gradient(circle at 50% 40%, #ffffff 0%, #fff6c7 60%, #ffe77f 100%);
+  width: 36px;
+  height: 50px;
   border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
-  box-shadow: 0 0 25px #ffe77f, 0 0 60px rgba(255, 231, 127, 0.8), 0 0 100px rgba(52, 211, 153, 0.4);
   position: relative;
-  animation: bulbGlowPulse 2.5s infinite alternate ease-in-out;
+  transition: all 0.3s ease;
 }
 
-.bulb-filament {
+/* Lights OFF state for bulb */
+.hero-section.lights-off .bulb-glass {
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.1) 0%, rgba(20, 40, 30, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section.lights-off .bulb-filament {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 14px;
-  border: 1.5px solid rgba(245, 158, 11, 0.9);
+  width: 10px;
+  height: 16px;
+  border: 1.5px solid rgba(245, 158, 11, 0.25);
   border-radius: 4px;
 }
 
-.bulb-radiant-glow {
+/* Lights ON state for bulb with ignition flicker */
+.hero-section.lights-on .bulb-glass {
+  background: radial-gradient(circle at 50% 40%, #ffffff 0%, #fff6c7 60%, #ffe77f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 25px #ffe77f, 0 0 60px rgba(255, 231, 127, 0.9), 0 0 110px rgba(52, 211, 153, 0.55);
+  animation: bulbIgnitionFlicker 0.6s ease-out, bulbGlowPulse 2.8s infinite 0.6s alternate ease-in-out;
+}
+
+.hero-section.lights-on .bulb-filament {
   position: absolute;
-  top: 60px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, rgba(255, 231, 127, 0.4) 0%, rgba(52, 211, 153, 0.15) 50%, transparent 70%);
+  width: 10px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #ffb703;
+}
+
+@keyframes bulbIgnitionFlicker {
+  0% { opacity: 0.1; filter: brightness(0.2); }
+  15% { opacity: 0.9; filter: brightness(2.2); }
+  30% { opacity: 0.3; filter: brightness(0.5); }
+  50% { opacity: 1; filter: brightness(2.5); }
+  70% { opacity: 0.7; filter: brightness(0.9); }
+  100% { opacity: 1; filter: brightness(1.15); }
+}
+
+/* Pull Chain Switch */
+.bulb-pull-chain {
+  position: absolute;
+  right: -8px;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.chain-line {
+  width: 1.5px;
+  height: 38px;
+  background: repeating-linear-gradient(180deg, #d4af37, #d4af37 2px, transparent 2px, transparent 4px);
+}
+
+.chain-bead {
+  width: 7px;
+  height: 7px;
+  background: #ffe77f;
   border-radius: 50%;
-  filter: blur(25px);
-  animation: bulbHalo 2.5s infinite alternate;
+  box-shadow: 0 0 6px rgba(255, 231, 127, 0.8);
+}
+
+.bulb-pull-chain.pulled {
+  transform: translateY(12px);
+}
+
+/* Radiant Glow & Spotlight Beam */
+.bulb-radiant-glow {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255, 231, 127, 0.45) 0%, rgba(52, 211, 153, 0.2) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-section.lights-on .bulb-radiant-glow {
+  opacity: 1;
+  animation: bulbHalo 2.8s infinite alternate;
 }
 
 .bulb-spotlight-beam {
   position: absolute;
-  top: 75px;
+  top: 85px;
   left: 50%;
   transform: translateX(-50%);
-  width: 700px;
-  height: 400px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(255, 231, 127, 0.16) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 75%);
+  width: 850px;
+  height: 550px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 231, 127, 0.22) 0%, rgba(16, 185, 129, 0.1) 45%, transparent 75%);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-section.lights-on .bulb-spotlight-beam {
+  opacity: 1;
+}
+
+/* Expanding light burst on ignite */
+.bulb-light-burst {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.1);
+  width: 1200px;
+  height: 1200px;
+  background: radial-gradient(circle, rgba(255, 245, 180, 0.65) 0%, rgba(52, 211, 153, 0.25) 35%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 4;
+}
+
+.bulb-light-burst.active-burst {
+  animation: lightBurstPulse 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes lightBurstPulse {
+  0% { transform: translateX(-50%) scale(0.1); opacity: 0.9; }
+  60% { opacity: 0.6; }
+  100% { transform: translateX(-50%) scale(2.2); opacity: 0; }
+}
+
+/* Bulb Hint Pill */
+.bulb-hint-pill {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(6, 20, 14, 0.85);
+  border: 1px solid rgba(255, 231, 127, 0.35);
+  color: var(--bulb-gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.hero-hanging-bulb:hover .bulb-hint-pill {
+  opacity: 1;
+  transform: translateX(-50%) translateY(4px);
 }
 
 @keyframes bulbGlowPulse {

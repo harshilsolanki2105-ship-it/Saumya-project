@@ -84,23 +84,39 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section" id="hero">
-    <!-- Hanging Lightbulb Motif (Echoing the CREATORS Logo) -->
-    <div class="hero-hanging-bulb" aria-hidden="true">
-      <div class="bulb-wire"></div>
-      <div class="bulb-socket"></div>
-      <div class="bulb-glass">
-        <div class="bulb-filament"></div>
+  <!-- Hero Section with Dramatic Lightbulb Enlightenment Opening -->
+  <section class="hero-section lights-off" id="hero">
+    <!-- Darkness Veil that dissolves when the bulb turns ON -->
+    <div class="hero-darkness-veil" id="heroDarknessVeil"></div>
+
+    <!-- Hanging Lightbulb Assembly (from Logo) -->
+    <div class="hero-hanging-bulb" id="heroBulb" role="button" tabindex="0" title="Click bulb or chain to toggle light">
+      <div class="bulb-cord"></div>
+      <div class="bulb-fixture">
+        <div class="bulb-socket"></div>
+        <div class="bulb-glass" id="bulbGlass">
+          <div class="bulb-filament"></div>
+        </div>
       </div>
-      <div class="bulb-radiant-glow"></div>
-      <div class="bulb-spotlight-beam"></div>
+      <!-- Pull chain switch -->
+      <div class="bulb-pull-chain" id="bulbChain">
+        <div class="chain-line"></div>
+        <div class="chain-bead"></div>
+      </div>
+      <!-- Radiant Light Aura & Spotlight Beam -->
+      <div class="bulb-radiant-glow" id="bulbGlow"></div>
+      <div class="bulb-spotlight-beam" id="bulbBeam"></div>
+      <div class="bulb-light-burst" id="bulbBurst"></div>
+
+      <div class="bulb-hint-pill" id="bulbHintPill">
+        <i class="fa-solid fa-lightbulb"></i> Click to toggle
+      </div>
     </div>
 
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
     
-    <div class="container hero-container">
+    <div class="container hero-container" id="heroContainer">
       <div class="hero-content">
         <div class="badge-pill">
           <span class="pulse-dot"></span>

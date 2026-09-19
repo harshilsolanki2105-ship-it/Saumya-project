@@ -15,12 +15,76 @@ const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
 document.addEventListener("DOMContentLoaded", () => {
   initIntroAnimation();
+  initHeroBulbEnlightenment();
   initNavbar();
   initAnimatedCounters();
   initEquityCalculator();
   initFaqAccordion();
   initEnquiryForm();
 });
+
+/* --------------------------------------------------------------------------
+   Hero Dramatic Bulb Enlightenment & Interactive Switch
+   -------------------------------------------------------------------------- */
+function initHeroBulbEnlightenment() {
+  const hero = document.getElementById("hero");
+  const heroBulb = document.getElementById("heroBulb");
+  const bulbChain = document.getElementById("bulbChain");
+  const bulbBurst = document.getElementById("bulbBurst");
+  const introOverlay = document.getElementById("introOverlay");
+
+  if (!hero || !heroBulb) return;
+
+  let isLightOn = false;
+
+  const turnLightOn = (playBurst = true) => {
+    isLightOn = true;
+    hero.classList.remove("lights-off");
+    hero.classList.add("lights-on");
+
+    if (playBurst && bulbBurst) {
+      bulbBurst.classList.remove("active-burst");
+      void bulbBurst.offsetWidth; // Force reflow
+      bulbBurst.classList.add("active-burst");
+    }
+  };
+
+  const turnLightOff = () => {
+    isLightOn = false;
+    hero.classList.remove("lights-on");
+    hero.classList.add("lights-off");
+  };
+
+  const toggleLight = () => {
+    // Animate pull chain
+    if (bulbChain) {
+      bulbChain.classList.add("pulled");
+      setTimeout(() => bulbChain.classList.remove("pulled"), 200);
+    }
+
+    if (isLightOn) {
+      turnLightOff();
+    } else {
+      turnLightOn(true);
+    }
+  };
+
+  // Trigger initial dramatic enlightenment sequence
+  // If preloader is visible, wait for preloader to dissolve, then ignite
+  const delay = introOverlay ? 2200 : 800;
+  setTimeout(() => {
+    turnLightOn(true);
+  }, delay);
+
+  // Click bulb or chain to toggle light
+  heroBulb.addEventListener("click", toggleLight);
+  heroBulb.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleLight();
+    }
+  });
+}
 
 /* --------------------------------------------------------------------------
    Intro Paper Aeroplane Animation
