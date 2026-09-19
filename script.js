@@ -31,7 +31,7 @@ function initHeroBulbEnlightenment() {
   const heroBulb = document.getElementById("heroBulb");
   const bulbChain = document.getElementById("bulbChain");
   const bulbBurst = document.getElementById("bulbBurst");
-  const introOverlay = document.getElementById("introOverlay");
+  const bulbDarkPrompt = document.getElementById("bulbDarkPrompt");
 
   if (!hero || !heroBulb) return;
 
@@ -59,7 +59,7 @@ function initHeroBulbEnlightenment() {
     // Animate pull chain
     if (bulbChain) {
       bulbChain.classList.add("pulled");
-      setTimeout(() => bulbChain.classList.remove("pulled"), 200);
+      setTimeout(() => bulbChain.classList.remove("pulled"), 220);
     }
 
     if (isLightOn) {
@@ -69,15 +69,12 @@ function initHeroBulbEnlightenment() {
     }
   };
 
-  // Trigger initial dramatic enlightenment sequence
-  // If preloader is visible, wait for preloader to dissolve, then ignite
-  const delay = introOverlay ? 2200 : 800;
-  setTimeout(() => {
-    turnLightOn(true);
-  }, delay);
-
-  // Click bulb or chain to toggle light
+  // Click bulb, chain, or prompt pill to toggle light
   heroBulb.addEventListener("click", toggleLight);
+  if (bulbDarkPrompt) {
+    bulbDarkPrompt.addEventListener("click", toggleLight);
+  }
+
   heroBulb.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();

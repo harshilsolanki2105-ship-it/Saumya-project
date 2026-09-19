@@ -107,9 +107,26 @@
       <div class="bulb-radiant-glow" id="bulbGlow"></div>
       <div class="bulb-spotlight-beam" id="bulbBeam"></div>
       <div class="bulb-light-burst" id="bulbBurst"></div>
+    </div>
 
-      <div class="bulb-hint-pill" id="bulbHintPill">
-        <i class="fa-solid fa-lightbulb"></i> Click to toggle
+    <!-- Dark Mode Navigation Prompt with Pointing Arrow -->
+    <div class="bulb-dark-prompt" id="bulbDarkPrompt" role="button" tabindex="0" title="Click to light up your business future">
+      <div class="prompt-arrow-container">
+        <svg class="prompt-arrow-svg" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 48 V8 M8 20 L20 6 L32 20" stroke="url(#arrowGlowGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="arrowGlowGrad" x1="20" y1="48" x2="20" y2="6" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#34D399" stop-opacity="0.4"/>
+              <stop offset="0.6" stop-color="#FFE77F"/>
+              <stop offset="1" stop-color="#FFFFFF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="prompt-pill">
+        <span class="prompt-icon"><i class="fa-solid fa-lightbulb"></i></span>
+        <span class="prompt-text">Light up Your Business future by toggling this</span>
+        <span class="prompt-badge">CLICK BULB</span>
       </div>
     </div>
 

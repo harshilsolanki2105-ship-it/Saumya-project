@@ -896,28 +896,116 @@ img {
   100% { transform: translateX(-50%) scale(2.2); opacity: 0; }
 }
 
-/* Bulb Hint Pill */
-.bulb-hint-pill {
+/* --------------------------------------------------------------------------
+   Dark Mode Prompt & Pointing Arrow (Navigates User to Toggle Bulb)
+   -------------------------------------------------------------------------- */
+.bulb-dark-prompt {
   position: absolute;
-  bottom: -32px;
+  top: 145px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(6, 20, 14, 0.85);
-  border: 1px solid rgba(255, 231, 127, 0.35);
-  color: var(--bulb-gold);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  z-index: 15;
+  cursor: pointer;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
 }
 
-.hero-hanging-bulb:hover .bulb-hint-pill {
+.hero-section.lights-off .bulb-dark-prompt {
   opacity: 1;
-  transform: translateX(-50%) translateY(4px);
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hero-section.lights-on .bulb-dark-prompt {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(20px);
+}
+
+.prompt-arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: arrowUpBounce 1.5s infinite ease-in-out;
+}
+
+.prompt-arrow-svg {
+  width: 32px;
+  height: 40px;
+  filter: drop-shadow(0 0 12px rgba(255, 231, 127, 0.85)) drop-shadow(0 0 20px rgba(52, 211, 153, 0.6));
+}
+
+@keyframes arrowUpBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.prompt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(10, 30, 22, 0.92);
+  border: 1.5px solid rgba(255, 231, 127, 0.65);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 30px rgba(255, 231, 127, 0.25), 0 0 15px rgba(52, 211, 153, 0.2), inset 0 0 15px rgba(255, 231, 127, 0.08);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bulb-dark-prompt:hover .prompt-pill {
+  transform: scale(1.05);
+  border-color: #ffe77f;
+  box-shadow: 0 0 45px rgba(255, 231, 127, 0.5), 0 0 25px rgba(52, 211, 153, 0.4);
+}
+
+.prompt-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 231, 127, 0.18);
+  color: var(--bulb-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(255, 231, 127, 0.5);
+  animation: bulbIconPulse 2s infinite alternate;
+}
+
+@keyframes bulbIconPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 6px #ffe77f); }
+}
+
+.prompt-text {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 231, 127, 0.4);
+}
+
+.prompt-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffe77f 0%, #10b981 100%);
+  color: #071711;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px rgba(255, 231, 127, 0.6);
 }
 
 @keyframes bulbGlowPulse {
