@@ -1,15 +1,16 @@
 /**
  * ==============================================================================
- * ScaleVest Venture Studio - Interactive Client Logic & Direct Email Delivery
+ * CREATORS® Venture Studio - Interactive Client Logic & Direct Email Delivery
+ * Built to be seen.
  * ==============================================================================
  */
 
 // -----------------------------------------------------------------------------
-// 1. CONFIGURATION: GOOGLE DIRECT EMAIL APPS SCRIPT WEBHOOK URL
+// 1. CONFIGURATION: GOOGLE APPS SCRIPT WEBHOOK URL
 // -----------------------------------------------------------------------------
-// Instructions: Once you follow google-email-script.gs and deploy your Google Web App (1 min),
-// paste your Web App URL below (looks like https://script.google.com/macros/s/AKfycb.../exec)
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXZqVAIxrLStlpIMwP04MgNhGKX96iDXT0iwjxH2aWy6qeziU42GEh3YtMASjXIHBk/exec";
+// Instructions: Once you deploy google-email-script.gs as a Web App,
+// replace the placeholder string below with your actual Google Script Web App URL!
+const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -145,7 +146,7 @@ function easeOutQuad(x) {
 }
 
 /* --------------------------------------------------------------------------
-   Interactive Startup Growth & Equity Calculator
+   Interactive Startup Growth & Equity Calculator (in Rupees ₹)
    -------------------------------------------------------------------------- */
 function initEquityCalculator() {
   const stageBtns = document.querySelectorAll(".stage-btn");
@@ -195,28 +196,28 @@ function initEquityCalculator() {
     // Multipliers based on stage
     let stageMultiplier = 1;
     let baseUsers = 5000;
-    let baseArr = 40000;
+    let baseArrRupees = 500000; // Base 5 Lakhs
 
     if (currentStage === "idea") {
-      stageMultiplier = 0.75;
+      stageMultiplier = 0.8;
       baseUsers = 2500;
-      baseArr = 20000;
+      baseArrRupees = 300000;
     } else if (currentStage === "mvp") {
       stageMultiplier = 1.0;
       baseUsers = 6000;
-      baseArr = 55000;
+      baseArrRupees = 750000;
     } else if (currentStage === "seed") {
-      stageMultiplier = 1.5;
+      stageMultiplier = 1.6;
       baseUsers = 15000;
-      baseArr = 120000;
+      baseArrRupees = 1800000;
     } else if (currentStage === "scaling") {
-      stageMultiplier = 2.2;
+      stageMultiplier = 2.4;
       baseUsers = 35000;
-      baseArr = 280000;
+      baseArrRupees = 4500000;
     }
 
-    // Calculations
-    const monthlyEquivalent = Math.round((equity * 2400 + 3500) * stageMultiplier);
+    // Calculations in INR
+    const monthlyEquivalent = Math.round((equity * 30000 + 40000) * stageMultiplier);
     const totalEquivalent = monthlyEquivalent * months;
 
     let teamCount = "2 Specialists";
@@ -226,43 +227,47 @@ function initEquityCalculator() {
     const calcUsersLow = Math.round((baseUsers * (equity / 2) * (months / 6)) / 1000) * 1000;
     const calcUsersHigh = Math.round(calcUsersLow * 2.2);
 
-    const calcArr = Math.round((baseArr * (equity / 2.5) * (months / 6)) / 5000) * 5000;
+    const calcArr = Math.round((baseArrRupees * (equity / 2.5) * (months / 6)) / 50000) * 50000;
 
-    // Update UI elements
-    equivalentValue.textContent = `$${totalEquivalent.toLocaleString()}`;
-    teamSize.textContent = teamCount;
-    projectedUsers.textContent = `${calcUsersLow > 1000 ? (calcUsersLow/1000).toFixed(0) + 'k' : calcUsersLow} – ${(calcUsersHigh/1000).toFixed(0)}k`;
-    projectedArr.textContent = `+$${calcArr.toLocaleString()}`;
+    // Update UI elements in Rupees (₹)
+    if (equivalentValue) equivalentValue.textContent = `₹${totalEquivalent.toLocaleString('en-IN')}`;
+    if (teamSize) teamSize.textContent = teamCount;
+    if (projectedUsers) projectedUsers.textContent = `${calcUsersLow > 1000 ? (calcUsersLow/1000).toFixed(0) + 'k' : calcUsersLow} – ${(calcUsersHigh/1000).toFixed(0)}k`;
+    if (projectedArr) projectedArr.textContent = `+₹${calcArr.toLocaleString('en-IN')}`;
 
-    if (equity >= 5.0) {
-      sprintTierBadge.textContent = "Co-Founder Growth Tier";
-      sprintTierBadge.style.color = "#00f2fe";
-    } else if (equity >= 3.0) {
-      sprintTierBadge.textContent = "Venture Accelerator Tier";
-      sprintTierBadge.style.color = "#10b981";
-    } else {
-      sprintTierBadge.textContent = "Micro-Equity Sprint Tier";
-      sprintTierBadge.style.color = "#f59e0b";
+    if (sprintTierBadge) {
+      if (equity >= 5.0) {
+        sprintTierBadge.textContent = "Co-Founder Growth Tier (Custom)";
+        sprintTierBadge.style.color = "#00f2fe";
+      } else if (equity >= 3.0) {
+        sprintTierBadge.textContent = "Venture Accelerator Tier (Custom)";
+        sprintTierBadge.style.color = "#10b981";
+      } else {
+        sprintTierBadge.textContent = "Micro-Equity Sprint Tier (Custom)";
+        sprintTierBadge.style.color = "#f59e0b";
+      }
     }
 
     // Dynamic services included
     let services = [
-      "High-Converting GTM Launch Strategy",
+      "Custom GTM Launch Strategy For Your Brand",
       "Meta & Google Performance Ads Setup",
-      "Viral Organic Short-form Video Pipeline",
+      "Viral Organic Short-form Reel & Video Engine",
       "Product Hunt #1 Launch Day Playbook"
     ];
 
     if (equity >= 3.5) {
       services.push("Full Landing Page UI/UX Redesign in Figma");
-      services.push("Investor Pitch Deck Narrative & Metric Modeling");
+      services.push("Investor Pitch Deck Narrative & Financial Model");
     }
     if (equity >= 5.0) {
-      services.push("Dedicated Fractional CMO & Weekly Venture Reviews");
+      services.push("Dedicated Fractional CMO & Weekly Strategy Reviews");
       services.push("Warm VC & Angel Syndicate Introductions");
     }
 
-    serviceList.innerHTML = services.map(s => `<li><i class="fa-solid fa-circle-check"></i> ${s}</li>`).join("");
+    if (serviceList) {
+      serviceList.innerHTML = services.map(s => `<li><i class="fa-solid fa-circle-check"></i> ${s}</li>`).join("");
+    }
   }
 
   // Initial calculation
@@ -273,7 +278,7 @@ function initEquityCalculator() {
    Helper to Select Model from Comparison Cards
    -------------------------------------------------------------------------- */
 window.selectModel = function(modelName) {
-  const radio = document.querySelector(`input[name="model"][value="${modelName}"]`);
+  const radio = document.querySelector(`input[name="Partnership Model"][value*="${modelName}"], input[name="model"][value*="${modelName}"], input[type="radio"][value*="${modelName}"]`);
   if (radio) {
     radio.checked = true;
   }

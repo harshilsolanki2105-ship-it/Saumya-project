@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ==============================================================================
  * GOOGLE APPS SCRIPT: DIRECT EMAIL WEBHOOK (NO SPREADSHEETS NEEDED)
  * ==============================================================================
@@ -69,19 +69,19 @@ function doPost(e) {
     var goals = getVal(["goals", "Primary Marketing Goals", "Primary Goals", "marketingGoals", "Goals"]);
     var pitch = getVal(["pitch", "Product Pitch & Details", "Product Pitch & Value", "Pitch", "details"]);
 
-    var subject = "🚀 ScaleVest Application: " + (startupName !== "N/A" ? startupName : "New Startup") + " (" + (founderName !== "N/A" ? founderName : "Founder") + ")";
+    var subject = "💡 CREATORS® Application: " + (startupName !== "N/A" ? startupName : "New Brand") + " (" + (founderName !== "N/A" ? founderName : "Founder") + ")";
 
     var htmlBody = 
       '<div style="font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; max-width: 620px; margin: 20px auto; border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; background-color: #0d1117; color: #f1f5f9;">' +
         '<div style="background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); padding: 24px; color: #07090e; text-align: center;">' +
-          '<h1 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">🚀 New Venture Application Received</h1>' +
-          '<p style="margin: 6px 0 0 0; font-size: 14px; font-weight: 600; opacity: 0.85;">ScaleVest Venture Studio Portal</p>' +
+          '<h1 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">💡 New Brand Partnership Application</h1>' +
+          '<p style="margin: 6px 0 0 0; font-size: 14px; font-weight: 600; opacity: 0.85;">CREATORS® Venture Studio • Built To Be Seen</p>' +
         '</div>' +
         '<div style="padding: 24px; background-color: #0d1117;">' +
           '<table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #cbd5e1;">' +
             '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8; width: 35%;">Founder Name:</td><td style="padding: 12px 0; color: #ffffff; font-weight: bold;">' + escapeHtml(founderName) + '</td></tr>' +
             '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8;">Work Email:</td><td style="padding: 12px 0;"><a href="mailto:' + escapeHtml(email) + '" style="color: #00f2fe; text-decoration: none; font-weight: bold;">' + escapeHtml(email) + '</a></td></tr>' +
-            '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8;">Startup Name:</td><td style="padding: 12px 0; color: #ffffff; font-weight: bold; font-size: 15px;">' + escapeHtml(startupName) + '</td></tr>' +
+            '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8;">Brand / Startup Name:</td><td style="padding: 12px 0; color: #ffffff; font-weight: bold; font-size: 15px;">' + escapeHtml(startupName) + '</td></tr>' +
             '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8;">Website / Deck URL:</td><td style="padding: 12px 0;">' + (website !== "N/A" ? '<a href="' + escapeHtml(website) + '" target="_blank" style="color: #00f2fe;">' + escapeHtml(website) + '</a>' : '<span style="color: #64748b;">N/A</span>') + '</td></tr>' +
             '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8;">Venture Stage:</td><td style="padding: 12px 0; color: #f8fafc;">' + escapeHtml(stage) + '</td></tr>' +
             '<tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 12px 0; font-weight: 600; color: #94a3b8;">Partnership Model:</td><td style="padding: 12px 0; color: #00f2fe; font-weight: bold;">' + escapeHtml(model) + '</td></tr>' +
