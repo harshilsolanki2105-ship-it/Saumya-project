@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScaleVest | Equity-Powered Startup Growth Studio</title>
+  <meta name="description" content="We scale early-stage startups and ventures. Pay with cash or sweat equity — $0 upfront marketing firepower to hit your next funding round.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Preloader / Paper Aeroplane Intro Animation -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-bg-glow"></div>
+    <div class="intro-flight-track">
+      <!-- Animated glowing dashed trail SVG -->
+      <svg class="flight-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+        <path id="flightPath" d="M -50,650 Q 200,500 450,300 T 1050,-50" fill="none" stroke="rgba(0, 242, 254, 0.4)" stroke-width="2.5" stroke-dasharray="8,8" />
+      </svg>
+      
+      <!-- Flying Paper Aeroplane -->
+      <div class="paper-plane" id="paperPlane">
+        <svg class="plane-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="url(#planeGradient)"/>
+          <defs>
+            <linearGradient id="planeGradient" x1="2" y1="3" x2="23" y2="21" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00F2FE"/>
+              <stop offset="0.5" stop-color="#4FACFE"/>
+              <stop offset="1" stop-color="#FFFFFF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="plane-jet-glow"></div>
+        <div class="plane-particle p1"></div>
+        <div class="plane-particle p2"></div>
+      </div>
+    </div>
+
+    <div class="intro-content">
+      <div class="intro-logo">
+        <div class="logo-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div class="logo-text">Scale<span>Vest</span></div>
+      </div>
+      <p class="intro-tagline">Launching Ideas into Orbit...</p>
+    </div>
+
+    <button class="skip-intro-btn" id="skipIntroBtn" aria-label="Skip Intro">
+      Skip Intro <i class="fa-solid fa-forward"></i>
+    </button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+        <div class="logo-text">Scale<span>Vest</span></div>
+        <span class="logo-tag">Venture Studio</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">The Model</a>
+        <a href="#calculator" class="nav-link">Equity Calculator</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#case-studies" class="nav-link">Ventures</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#apply" class="btn btn-sm btn-primary nav-cta">Apply for Growth</a>
+      </nav>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span class="pulse-dot"></span>
+          <span>Dual Model: Cash Retainer or $0 Upfront Equity</span>
+        </div>
+        
+        <h1 class="hero-title">
+          We Scale High-Potential Startups. <br>
+          <span class="gradient-text">Zero Marketing Budget? We Take Equity.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+          ScaleVest is a full-stack venture growth studio. We partner with ambitious founders to engineer hyper-growth, launch viral campaigns, and drive paying users — in exchange for standard fees or <strong>sweat equity</strong>.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#apply" class="btn btn-lg btn-primary">
+            <i class="fa-solid fa-handshake"></i> Apply with Equity / Cash
+          </a>
+          <a href="#calculator" class="btn btn-lg btn-secondary">
+            <i class="fa-solid fa-calculator"></i> Simulate Growth & Equity
+          </a>
+        </div>
+
+        <!-- Trust Metric Bar -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="45">0</h3><span class="stat-symbol">+</span>
+            <p class="stat-label">Startups Scaled</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="18">0</h3><span class="stat-symbol">M+</span>
+            <p class="stat-label">Seed Capital Unlocked</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="72">0</h3><span class="stat-symbol">%</span>
+            <p class="stat-label">Equity Partnership Rate</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="4">0</h3><span class="stat-symbol">.2x</span>
+            <p class="stat-label">Average ARR Multiplier</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem & Solution / The Dual Model Section -->
+  <section class="section model-section" id="about">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Disrupting Traditional Agency Models</span>
+        <h2 class="section-title">Great Startups Fail From Lack of Distribution.<br><span class="gradient-text">We Solve The Cash Dilemma.</span></h2>
+        <p class="section-desc">
+          Traditional marketing agencies charge \$10k–\$25k/month upfront regardless of results. Early-stage founders rarely have this capital. We align our incentives with your long-term success.
+        </p>
+      </div>
+
+      <div class="model-cards-grid">
+        <!-- Model 1: Equity Partnership -->
+        <div class="model-card featured">
+          <div class="featured-badge">Most Popular for Bootstrapped Founders</div>
+          <div class="model-icon">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <h3 class="model-title">Equity-for-Marketing</h3>
+          <p class="model-subtitle">For visionary bootstrapped & pre-seed startups.</p>
+          
+          <div class="model-price">
+            <span class="price-val">$0</span>
+            <span class="price-sub">Upfront Cash / 2% – 7% Advisory Equity</span>
+          </div>
+
+          <ul class="model-features">
+            <li><i class="fa-solid fa-check"></i> <strong>Zero Monthly Fees:</strong> Full growth team at $0 burn.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Skin in the Game:</strong> We only win when your valuation multiplies.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Dedicated Growth Squad:</strong> Marketers, designers, ad buyers & copywriters.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Investor Pitch Support:</strong> Warm intros to Tier-1 Angels & VCs.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>SAFE / FAST Agreement:</strong> Standardized, legal founder-friendly terms.</li>
+          </ul>
+
+          <a href="#apply" class="btn btn-block btn-primary" onclick="selectModel('Equity Partnership (0$ upfront)')">Apply with Sweat Equity</a>
+        </div>
+
+        <!-- Model 2: Cash Retainer -->
+        <div class="model-card">
+          <div class="model-icon">
+            <i class="fa-solid fa-money-bill-trend-up"></i>
+          </div>
+          <h3 class="model-title">Performance Cash Model</h3>
+          <p class="model-subtitle">For funded startups ready for high-speed scale.</p>
+          
+          <div class="model-price">
+            <span class="price-val">Fixed + ROAS</span>
+            <span class="price-sub">Zero Equity Dilution</span>
+          </div>
+
+          <ul class="model-features">
+            <li><i class="fa-solid fa-check"></i> <strong>100% Founder Ownership:</strong> Zero cap table dilution.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Performance-Linked Bonuses:</strong> Aligned with ROAS & CAC goals.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Multi-Channel Paid Ads:</strong> Meta, Google, LinkedIn & TikTok.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>High-Converting Funnels:</strong> Landing page design & CRO testing.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Flexible Contracts:</strong> Month-to-month growth sprints.</li>
+          </ul>
+
+          <a href="#apply" class="btn btn-block btn-outline" onclick="selectModel('Cash Retainer')">Choose Cash Model</a>
+        </div>
+
+        <!-- Model 3: Hybrid Co-Investment -->
+        <div class="model-card">
+          <div class="model-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3 class="model-title">Hybrid Scale Model</h3>
+          <p class="model-subtitle">Best for Seed-stage ventures seeking balanced burn.</p>
+          
+          <div class="model-price">
+            <span class="price-val">50% Cash + 1-3%</span>
+            <span class="price-sub">Micro-Equity Discount</span>
+          </div>
+
+          <ul class="model-features">
+            <li><i class="fa-solid fa-check"></i> <strong>Reduced Cash Burn:</strong> Half our standard fee.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Minimal Cap Table Impact:</strong> Micro advisory stake.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Full Marketing Arsenal:</strong> Organic + Paid + PR + Influencers.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Product-Market Fit (PMF) Tuning:</strong> User interview insights.</li>
+            <li><i class="fa-solid fa-check"></i> <strong>Shared Risk & High Speed:</strong> Scale with priority execution.</li>
+          </ul>
+
+          <a href="#apply" class="btn btn-block btn-outline" onclick="selectModel('Hybrid (Cash + Micro-Equity)')">Choose Hybrid Model</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Equity & Growth Simulator -->
+  <section class="section calc-section" id="calculator">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Interactive Simulation</span>
+        <h2 class="section-title">Startup Growth & Equity Calculator</h2>
+        <p class="section-desc">
+          Test how much marketing firepower, dedicated talent, and scale runway your startup unlocks based on your venture stage and equity allocation.
+        </p>
+      </div>
+
+      <div class="calculator-wrapper">
+        <div class="calc-inputs">
+          <!-- Input 1: Startup Stage -->
+          <div class="calc-group">
+            <label class="calc-label">
+              <span>1. Current Venture Stage</span>
+              <strong id="stageValueText" class="calc-val-badge">Early MVP / Pre-Revenue</strong>
+            </label>
+            <div class="stage-selector">
+              <button type="button" class="stage-btn" data-stage="idea">Idea / Concept</button>
+              <button type="button" class="stage-btn active" data-stage="mvp">Early MVP</button>
+              <button type="button" class="stage-btn" data-stage="seed">Seed / Revenue</button>
+              <button type="button" class="stage-btn" data-stage="scaling">Growth Stage</button>
+            </div>
+          </div>
+
+          <!-- Input 2: Desired Equity Share -->
+          <div class="calc-group">
+            <div class="calc-label">
+              <span>2. Equity Share Allocation</span>
+              <span class="calc-highlight" id="equityDisplay">3.5%</span>
+            </div>
+            <input type="range" id="equityRange" min="1.0" max="8.0" step="0.5" value="3.5" class="custom-slider">
+            <div class="range-markers">
+              <span>1.0% (Micro)</span>
+              <span>3.5% (Standard)</span>
+              <span>8.0% (Co-Founder Tier)</span>
+            </div>
+          </div>
+
+          <!-- Input 3: Growth Goal Timeline -->
+          <div class="calc-group">
+            <div class="calc-label">
+              <span>3. Partnership Sprint Duration</span>
+              <span class="calc-highlight" id="durationDisplay">6 Months</span>
+            </div>
+            <input type="range" id="durationRange" min="3" max="12" step="1" value="6" class="custom-slider">
+            <div class="range-markers">
+              <span>3 Months</span>
+              <span>6 Months (Recommended)</span>
+              <span>12 Months</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculator Dynamic Output Dashboard -->
+        <div class="calc-output">
+          <div class="output-header">
+            <h4>Estimated Value & Growth Output</h4>
+            <span class="output-pill" id="sprintTierBadge">Venture Accelerator Tier</span>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-title">Equivalent Agency Value</span>
+              <div class="metric-val" id="equivalentValue">$42,000</div>
+              <span class="metric-sub">Unlocked at $0 upfront cash</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Dedicated Growth Team</span>
+              <div class="metric-val" id="teamSize">3 Specialists</div>
+              <span class="metric-sub">Lead Marketer, Copywriter, Designer</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Target User / Lead Capacity</span>
+              <div class="metric-val" id="projectedUsers">10k – 25k</div>
+              <span class="metric-sub">High-intent acquired leads</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Projected ARR Boost</span>
+              <div class="metric-val highlight" id="projectedArr">+$120,000</div>
+              <span class="metric-sub">Estimated 12-month trajectory</span>
+            </div>
+          </div>
+
+          <div class="unlocked-services">
+            <h5>Included Marketing Arsenal:</h5>
+            <ul id="serviceList" class="unlocked-list">
+              <li><i class="fa-solid fa-circle-check"></i> High-Converting GTM Launch Strategy</li>
+              <li><i class="fa-solid fa-circle-check"></i> Meta & Google Performance Ads Setup</li>
+              <li><i class="fa-solid fa-circle-check"></i> Viral Organic TikTok / Reel Video Pipeline</li>
+              <li><i class="fa-solid fa-circle-check"></i> Product Hunt #1 Launch Day Playbook</li>
+            </ul>
+          </div>
+
+          <a href="#apply" class="btn btn-block btn-primary mt-3" id="calcApplyBtn">
+            Claim This Growth Package <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Services Arsenal -->
+  <section class="section services-section" id="services">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">End-to-End Growth Engine</span>
+        <h2 class="section-title">Everything Your Startup Needs to Dominate</h2>
+        <p class="section-desc">
+          We don’t do generic fluff. Every campaign, graphic, and ad dollar is engineered for customer acquisition and valuation growth.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h3>Go-To-Market (GTM) Blitz</h3>
+          <p>Product Hunt launches, beta invite waitlists, and viral invite loops engineered to capture your first 5,000 paying users.</p>
+          <div class="service-tags">
+            <span>Product Hunt #1</span>
+            <span>Viral Waitlists</span>
+            <span>Early Adopters</span>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Performance Paid Ads</h3>
+          <p>Profitable paid acquisition on Meta, Google Search, TikTok, and LinkedIn with continuous A/B creative testing.</p>
+          <div class="service-tags">
+            <span>CAC Reduction</span>
+            <span>Meta & TikTok</span>
+            <span>Retargeting</span>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-brands fa-tiktok"></i></div>
+          <h3>Viral Content & Organic Video</h3>
+          <p>High-tempo short-form video production (Reels, TikToks, Shorts) turning your founder and product into an industry authority.</p>
+          <div class="service-tags">
+            <span>Short-form Video</span>
+            <span>Founder Branding</span>
+            <span>Organic Reach</span>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
+          <h3>Brand Identity & High-Converting UI</h3>
+          <p>Landing page redesigns, pitch assets, and sleek visual identities built to convert cold visitors into high-paying clients.</p>
+          <div class="service-tags">
+            <span>Conversion Rate CRO</span>
+            <span>Figma UI/UX</span>
+            <span>Visual Identity</span>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h3>Investor Pitch Deck & PR Outreach</h3>
+          <p>Position your metrics and narrative for Series A / Seed fundraising, backed by press features in major tech publications.</p>
+          <div class="service-tags">
+            <span>Pitch Deck Polish</span>
+            <span>Tech PR</span>
+            <span>VC Storytelling</span>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h3>Email, CRM & Retention Engines</h3>
+          <p>Automated onboarding emails, abandoned cart recoveries, and churn prevention flows that maximize customer lifetime value (LTV).</p>
+          <div class="service-tags">
+            <span>Klaviyo / HubSpot</span>
+            <span>LTV Optimization</span>
+            <span>Drip Automations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Process Timeline -->
+  <section class="section process-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Transparent Roadmap</span>
+        <h2 class="section-title">From Application to Market Dominance</h2>
+        <p class="section-desc">Our streamlined 4-step framework takes you from zero traction to scalable revenue in under 90 days.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h4>Application & Pitch Submission</h4>
+            <p>Submit your startup info, product demo, and growth bottleneck through our 2-minute enquiry form.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h4>48-Hour Growth & Due Diligence Audit</h4>
+            <p>Our venture partners analyze your TAM, Unit Economics, and Product-Market Fit to evaluate equity alignment.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h4>Term Sheet & Model Selection</h4>
+            <p>We draft a transparent FAST (Founder Advisor Standard Template) equity agreement or custom cash retainer.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h4>90-Day Full-Throttle Growth Sprint</h4>
+            <p>Our dedicated growth team deploys campaigns, scales ads, optimizes funnels, and delivers rapid MRR growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simulated Case Studies / Portfolio -->
+  <section class="section case-section" id="case-studies">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Proven Track Record</span>
+        <h2 class="section-title">Venture Success Stories</h2>
+        <p class="section-desc">Explore how our sweat equity and performance marketing catapulted these early-stage startups.</p>
+      </div>
+
+      <div class="case-grid">
+        <!-- Case 1 -->
+        <div class="case-card">
+          <div class="case-badge">FinTech • Equity Model (4%)</div>
+          <h3>NovaPay Neo-Banking</h3>
+          <p class="case-desc">Bootstrapped student banking app struggling with customer acquisition cost before partner launch.</p>
+          <div class="case-stats">
+            <div class="c-stat">
+              <span class="c-val">+420%</span>
+              <span class="c-lbl">User Growth</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val">$1.2M</span>
+              <span class="c-lbl">Seed Raised</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val">-64%</span>
+              <span class="c-lbl">Blended CAC</span>
+            </div>
+          </div>
+          <div class="case-quote">"ScaleVest took 4% equity when we had 100 users. In 6 months we crossed 50,000 active accounts."</div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="case-card">
+          <div class="case-badge">B2B SaaS • Hybrid Model</div>
+          <h3>ClarifyAI Workflow</h3>
+          <p class="case-desc">AI document summarization tool needed enterprise pipeline and Product Hunt launch execution.</p>
+          <div class="case-stats">
+            <div class="c-stat">
+              <span class="c-val">#1</span>
+              <span class="c-lbl">Product of the Day</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val">$85k</span>
+              <span class="c-lbl">New MRR</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val">14 Days</span>
+              <span class="c-lbl">To 1,000 Signups</span>
+            </div>
+          </div>
+          <div class="case-quote">"They redesigned our onboarding and ran our paid acquisition with zero friction."</div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="case-card">
+          <div class="case-badge">D2C Health • Equity Model (3%)</div>
+          <h3>Aura Clean Superfoods</h3>
+          <p class="case-desc">Organic wellness brand with high manufacturing costs and no upfront marketing budget.</p>
+          <div class="case-stats">
+            <div class="c-stat">
+              <span class="c-val">4.8x</span>
+              <span class="c-lbl">ROAS on TikTok</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val">120k</span>
+              <span class="c-lbl">Email Subscribers</span>
+            </div>
+            <div class="c-stat">
+              <span class="c-val">$240k</span>
+              <span class="c-lbl">Monthly Revenue</span>
+            </div>
+          </div>
+          <div class="case-quote">"Our equity partnership felt like having 5 full-time CMOs working alongside us 24/7."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive FAQ Accordion -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Answers for Founders & Evaluators</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Key details on how equity dilution, vesting schedules, and legal safety work.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>How does the Equity-for-Marketing model legally work?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We use standard founder-friendly legal instruments like the FAST (Founder Advisor Standard Template) agreement or a SAFE (Simple Agreement for Future Equity). Equity vests based on agreed growth milestones or a 12-month period, ensuring you maintain full security.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What if our startup does not reach our target numbers?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>That is the beauty of our aligned model — we absorb the financial risk with you. You don't owe any back-payments or debt. We only profit when your startup creates long-term real enterprise value.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Can we switch from Equity to Cash later?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Once you secure venture funding or achieve cash-flow profitability, you can buy back unvested equity or transition future marketing sprints to our standard cash retainer.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Who pays for advertising ad spend (Google/Meta ads)?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Our sweat equity covers 100% of the creative talent, copywriting, funnel design, video production, and campaign management. Direct ad spend on platforms (like \$500/mo on Meta) is paid by the founder, or we focus on viral 100% organic growth channels.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>How long does the audit process take after submitting the form?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Our venture growth panel reviews every submission within 48 business hours. If there's a strong fit, we schedule a 30-minute discovery & roadmap call.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Startup Application & Enquiry Form (Direct Email Delivery) -->
+  <section class="section apply-section" id="apply">
+    <div class="container">
+      <div class="apply-container">
+        <div class="apply-header text-center">
+          <span class="section-tag">Ready to Scale?</span>
+          <h2 class="section-title">Apply for Venture Growth Partnership</h2>
+          <p class="section-desc">
+            Submit your startup details below. Our growth team will evaluate your metrics and send a custom growth proposal within 48 hours.
+          </p>
+        </div>
+
+        <!-- Enquiry Form -->
+        <form class="venture-form" id="enquiryForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="founderName">Founder / Team Lead Name <span class="req">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" id="founderName" name="founderName" placeholder="e.g. Alex Morgan" required>
+              </div>
+              <span class="field-error" id="err-founderName">Please enter your name.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Work Email <span class="req">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="email" name="Contact Email" placeholder="alex@yourstartup.com" required>
+              </div>
+              <span class="field-error" id="err-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startupName">Startup / Venture Name <span class="req">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-building input-icon"></i>
+                <input type="text" id="startupName" name="Startup Name" placeholder="e.g. NovaPay, Lumina AI" required>
+              </div>
+              <span class="field-error" id="err-startupName">Please enter your venture name.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="website">Website / Pitch Deck Link</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-link input-icon"></i>
+                <input type="url" id="website" name="Website or Pitch URL" placeholder="https://yourstartup.com or Notion/Figma link">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="stage">Current Startup Stage <span class="req">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-layer-group input-icon"></i>
+                <select id="stage" name="Current Venture Stage" required>
+                  <option value="" disabled selected>Select your stage</option>
+                  <option value="Idea / Concept Phase">Idea / Concept Phase</option>
+                  <option value="MVP Built / Pre-Revenue">MVP Built / Pre-Revenue</option>
+                  <option value="Early Revenue ($1k - $10k MRR)">Early Revenue ($1k - $10k MRR)</option>
+                  <option value="Scaling ($10k+ MRR / Funded)">Scaling ($10k+ MRR / Funded)</option>
+                </select>
+              </div>
+              <span class="field-error" id="err-stage">Please select your venture stage.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="budgetOrEquity">Target Budget or Equity Offer <span class="req">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-tag input-icon"></i>
+                <input type="text" id="budgetOrEquity" name="Budget or Equity Offer" placeholder="e.g. 3.5% Equity or $2,500/mo" required>
+              </div>
+              <span class="field-error" id="err-budgetOrEquity">Please specify your equity or budget range.</span>
+            </div>
+          </div>
+
+          <!-- Partnership Model Selection Tiles -->
+          <div class="form-group">
+            <label class="mb-2">Preferred Partnership Model <span class="req">*</span></label>
+            <div class="model-radio-group">
+              <label class="radio-card">
+                <input type="radio" name="Partnership Model" value="Equity Partnership ($0 upfront / 2-7% Equity)" checked>
+                <div class="radio-card-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <strong>Sweat Equity</strong>
+                  <span>$0 Upfront / 2-7% Equity</span>
+                </div>
+              </label>
+
+              <label class="radio-card">
+                <input type="radio" name="Partnership Model" value="Cash Retainer (Zero Dilution)">
+                <div class="radio-card-content">
+                  <i class="fa-solid fa-money-bill-wave"></i>
+                  <strong>Cash Retainer</strong>
+                  <span>Zero Cap Table Dilution</span>
+                </div>
+              </label>
+
+              <label class="radio-card">
+                <input type="radio" name="Partnership Model" value="Hybrid (50% Fee + 1-3% Micro-Equity)">
+                <div class="radio-card-content">
+                  <i class="fa-solid fa-bolt"></i>
+                  <strong>Hybrid Scale</strong>
+                  <span>50% Fee + 1-3% Equity</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="goals">Primary Marketing Challenges & Goals <span class="req">*</span></label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-bullseye input-icon textarea-icon"></i>
+              <textarea id="goals" name="Primary Marketing Goals" rows="3" placeholder="What are you trying to achieve? (e.g. Product Hunt launch, first 1,000 paying users, TikTok viral campaign, paid ads optimization)" required></textarea>
+            </div>
+            <span class="field-error" id="err-goals">Please share your marketing goals.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="pitch">Tell Us Briefly About Your Product & Value Proposition</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-lightbulb input-icon textarea-icon"></i>
+              <textarea id="pitch" name="Product Pitch & Details" rows="3" placeholder="What problem are you solving? Who is your target customer?"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-lg btn-primary btn-block submit-btn" id="submitBtn">
+            <span class="btn-text">Submit Startup Application <i class="fa-solid fa-paper-plane"></i></span>
+            <span class="btn-spinner hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...</span>
+          </button>
+
+          <!-- Direct Email Delivery Notice -->
+          <div class="email-delivery-badge">
+            <i class="fa-solid fa-envelope-circle-check"></i> Direct Email Delivery &bull; Instant Notification
+          </div>
+        </form>
+
+        <!-- Success Modal / Overlay -->
+        <div class="modal-overlay hidden" id="successModal">
+          <div class="modal-card">
+            <div class="modal-icon-success">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Application Received!</h3>
+            <p id="successMessage">Thank you for submitting your venture to ScaleVest. Our growth partners will review your pitch and contact you within 48 hours.</p>
+            
+            <div class="submission-summary" id="submissionSummary">
+              <!-- Dynamically populated summary -->
+            </div>
+
+            <button type="button" class="btn btn-primary btn-block mt-3" id="closeModalBtn">Got it, Thanks!</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <a href="#hero" class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-rocket"></i></div>
+          <div class="logo-text">Scale<span>Vest</span></div>
+        </a>
+        <p class="footer-tagline">
+          The venture-backed growth marketing studio. Scaling ambitious startups with high-velocity marketing in exchange for performance cash or sweat equity.
+        </p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">The Equity Model</a></li>
+          <li><a href="#calculator">Growth Calculator</a></li>
+          <li><a href="#services">Services Suite</a></li>
+          <li><a href="#case-studies">Portfolio</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Terms</h4>
+        <ul>
+          <li><a href="#faq">FAST Equity Agreement</a></li>
+          <li><a href="#faq">SAFE Advisory Terms</a></li>
+          <li><a href="#faq">Privacy Policy</a></li>
+          <li><a href="#faq">Founder Due Diligence</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Academic Project Notice</h4>
+        <div class="academic-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <p>This website was created as an academic project presentation demonstrating a disruptive startup equity marketing venture model.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p>&copy; 2026 ScaleVest Venture Studio. Built for Academic Presentation & Startup Innovation.</p>
+        <p class="designer-credit">Crafted with <i class="fa-solid fa-heart text-danger"></i> for Startup Founders</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
