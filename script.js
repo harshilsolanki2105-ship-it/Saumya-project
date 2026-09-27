@@ -207,11 +207,15 @@ function easeOutQuad(x) {
 }
 
 /* --------------------------------------------------------------------------
-   Interactive Startup Growth & Equity Calculator (in Rupees ₹)
+   Interactive Startup Growth & Revenue Share Simulator (in Rupees ₹)
    -------------------------------------------------------------------------- */
 function initEquityCalculator() {
   const stageBtns = document.querySelectorAll(".stage-btn");
   const stageValueText = document.getElementById("stageValueText");
+  const calcModelBtns = document.querySelectorAll(".calc-model-btn");
+  const calcModelText = document.getElementById("calcModelText");
+  const sliderLabelText = document.getElementById("sliderLabelText");
+  const sliderMarkers = document.getElementById("sliderMarkers");
   const equityRange = document.getElementById("equityRange");
   const equityDisplay = document.getElementById("equityDisplay");
   const durationRange = document.getElementById("durationRange");
@@ -225,6 +229,7 @@ function initEquityCalculator() {
   const serviceList = document.getElementById("serviceList");
 
   let currentStage = "mvp";
+  let currentModel = "sales"; // "sales" or "equity"
 
   // Stage Switcher
   stageBtns.forEach(btn => {
@@ -232,7 +237,53 @@ function initEquityCalculator() {
       stageBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       currentStage = btn.getAttribute("data-stage");
-      stageValueText.textContent = btn.textContent;
+      if (stageValueText) stageValueText.textContent = btn.textContent;
+      recalculate();
+    });
+  });
+
+  // Model Switcher (Share per Sales vs Strategic Equity Partner)
+  calcModelBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      calcModelBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentModel = btn.getAttribute("data-calc-model");
+      
+      if (currentModel === "sales") {
+        if (calcModelText) calcModelText.textContent = "Share per Sales (% on Sales)";
+        if (sliderLabelText) sliderLabelText.textContent = "Share per Sales Commission";
+        if (equityRange) {
+          equityRange.min = "5";
+          equityRange.max = "25";
+          equityRange.step = "1";
+          equityRange.value = "12";
+          if (equityDisplay) equityDisplay.textContent = "12%";
+        }
+        if (sliderMarkers) {
+          sliderMarkers.innerHTML = `
+            <span>5% (High AOV)</span>
+            <span>12% (Standard D2C/B2B)</span>
+            <span>25% (High Margin SaaS)</span>
+          `;
+        }
+      } else {
+        if (calcModelText) calcModelText.textContent = "Strategic Equity Partner (High-Potential)";
+        if (sliderLabelText) sliderLabelText.textContent = "Strategic Equity Allocation";
+        if (equityRange) {
+          equityRange.min = "1.0";
+          equityRange.max = "8.0";
+          equityRange.step = "0.5";
+          equityRange.value = "3.5";
+          if (equityDisplay) equityDisplay.textContent = "3.5%";
+        }
+        if (sliderMarkers) {
+          sliderMarkers.innerHTML = `
+            <span>1.0% (Micro-Advisory)</span>
+            <span>3.5% (Branding Partner)</span>
+            <span>8.0% (Co-Founder Tier)</span>
+          `;
+        }
+      }
       recalculate();
     });
   });
@@ -240,94 +291,132 @@ function initEquityCalculator() {
   // Sliders
   if (equityRange && durationRange) {
     equityRange.addEventListener("input", (e) => {
-      equityDisplay.textContent = `${parseFloat(e.target.value).toFixed(1)}%`;
+      const val = parseFloat(e.target.value);
+      if (equityDisplay) {
+        equityDisplay.textContent = `${currentModel === "equity" ? val.toFixed(1) : val}%`;
+      }
       recalculate();
     });
 
     durationRange.addEventListener("input", (e) => {
-      durationDisplay.textContent = `${e.target.value} Months`;
+      if (durationDisplay) durationDisplay.textContent = `${e.target.value} Months`;
       recalculate();
     });
   }
 
   function recalculate() {
-    const equity = parseFloat(equityRange.value);
-    const months = parseInt(durationRange.value);
+    const rangeVal = parseFloat(equityRange ? equityRange.value : (currentModel === "sales" ? 12 : 3.5));
+    const months = parseInt(durationRange ? durationRange.value : 6);
 
     // Multipliers based on stage
     let stageMultiplier = 1;
-    let baseUsers = 5000;
-    let baseArrRupees = 500000; // Base 5 Lakhs
+    let baseOrders = 500;
+    let baseRevenue = 800000; // Base ₹8 Lakhs
 
     if (currentStage === "idea") {
-      stageMultiplier = 0.8;
-      baseUsers = 2500;
-      baseArrRupees = 300000;
+      stageMultiplier = 0.75;
+      baseOrders = 200;
+      baseRevenue = 350000;
     } else if (currentStage === "mvp") {
       stageMultiplier = 1.0;
-      baseUsers = 6000;
-      baseArrRupees = 750000;
+      baseOrders = 650;
+      baseRevenue = 950000;
     } else if (currentStage === "seed") {
-      stageMultiplier = 1.6;
-      baseUsers = 15000;
-      baseArrRupees = 1800000;
+      stageMultiplier = 1.8;
+      baseOrders = 1800;
+      baseRevenue = 2400000;
     } else if (currentStage === "scaling") {
-      stageMultiplier = 2.4;
-      baseUsers = 35000;
-      baseArrRupees = 4500000;
+      stageMultiplier = 2.8;
+      baseOrders = 4500;
+      baseRevenue = 6000000;
     }
 
-    // Calculations in INR
-    const monthlyEquivalent = Math.round((equity * 30000 + 40000) * stageMultiplier);
-    const totalEquivalent = monthlyEquivalent * months;
+    if (currentModel === "sales") {
+      // Share per Sales model math
+      const commissionPercent = rangeVal; // 5 - 25%
+      const monthlyEquivalent = Math.round((commissionPercent * 28000 + 120000) * stageMultiplier);
+      const totalEquivalent = monthlyEquivalent * months;
 
-    let teamCount = "2 Specialists";
-    if (equity >= 5.0 || months >= 9) teamCount = "5 Specialists (Full Squad)";
-    else if (equity >= 3.0) teamCount = "3-4 Specialists";
+      let teamCount = "3 Specialists";
+      if (commissionPercent >= 18 || months >= 9) teamCount = "5 Specialists (Full Growth Squad)";
+      else if (commissionPercent >= 10) teamCount = "3-4 Specialists";
 
-    const calcUsersLow = Math.round((baseUsers * (equity / 2) * (months / 6)) / 1000) * 1000;
-    const calcUsersHigh = Math.round(calcUsersLow * 2.2);
+      const lowOrders = Math.round((baseOrders * (commissionPercent / 10) * (months / 6)) / 50) * 50;
+      const highOrders = Math.round(lowOrders * 2.4);
 
-    const calcArr = Math.round((baseArrRupees * (equity / 2.5) * (months / 6)) / 50000) * 50000;
+      const generatedSales = Math.round((baseRevenue * (commissionPercent / 10) * (months / 6)) / 50000) * 50000;
 
-    // Update UI elements in Rupees (₹)
-    if (equivalentValue) equivalentValue.textContent = `₹${totalEquivalent.toLocaleString('en-IN')}`;
-    if (teamSize) teamSize.textContent = teamCount;
-    if (projectedUsers) projectedUsers.textContent = `${calcUsersLow > 1000 ? (calcUsersLow/1000).toFixed(0) + 'k' : calcUsersLow} – ${(calcUsersHigh/1000).toFixed(0)}k`;
-    if (projectedArr) projectedArr.textContent = `+₹${calcArr.toLocaleString('en-IN')}`;
+      if (equivalentValue) equivalentValue.textContent = `₹${totalEquivalent.toLocaleString('en-IN')}`;
+      if (teamSize) teamSize.textContent = teamCount;
+      if (projectedUsers) projectedUsers.textContent = `${lowOrders.toLocaleString('en-IN')} – ${highOrders.toLocaleString('en-IN')} Orders`;
+      if (projectedArr) projectedArr.textContent = `+₹${generatedSales.toLocaleString('en-IN')}`;
 
-    if (sprintTierBadge) {
-      if (equity >= 5.0) {
-        sprintTierBadge.textContent = "Co-Founder Growth Tier (Custom)";
-        sprintTierBadge.style.color = "#00f2fe";
-      } else if (equity >= 3.0) {
-        sprintTierBadge.textContent = "Venture Accelerator Tier (Custom)";
-        sprintTierBadge.style.color = "#10b981";
-      } else {
-        sprintTierBadge.textContent = "Micro-Equity Sprint Tier (Custom)";
-        sprintTierBadge.style.color = "#f59e0b";
+      if (sprintTierBadge) {
+        sprintTierBadge.textContent = "Performance Revenue Accelerator (₹0 Upfront)";
+        sprintTierBadge.style.color = "#34d399";
       }
-    }
 
-    // Dynamic services included
-    let services = [
-      "Custom GTM Launch Strategy For Your Brand",
-      "Meta & Google Performance Ads Setup",
-      "Viral Organic Short-form Reel & Video Engine",
-      "Product Hunt #1 Launch Day Playbook"
-    ];
+      // Services
+      let services = [
+        "High-Converting Funnels & Landing Page CRO",
+        "Multi-Channel Paid Ads (Meta, Google, YouTube)",
+        "Viral Organic Short-form Reels & Video Production",
+        "Automated Email & WhatsApp Retention Flows"
+      ];
+      if (commissionPercent >= 12) {
+        services.push("Creative A/B Ad Sprints & UGC Influencer Network");
+      }
+      if (commissionPercent >= 18) {
+        services.push("Dedicated Media Buying Director & Weekly Revenue Reviews");
+      }
 
-    if (equity >= 3.5) {
-      services.push("Full Landing Page UI/UX Redesign in Figma");
-      services.push("Investor Pitch Deck Narrative & Financial Model");
-    }
-    if (equity >= 5.0) {
-      services.push("Dedicated Fractional CMO & Weekly Strategy Reviews");
-      services.push("Warm VC & Angel Syndicate Introductions");
-    }
+      if (serviceList) {
+        serviceList.innerHTML = services.map(s => `<li><i class="fa-solid fa-circle-check"></i> ${s}</li>`).join("");
+      }
 
-    if (serviceList) {
-      serviceList.innerHTML = services.map(s => `<li><i class="fa-solid fa-circle-check"></i> ${s}</li>`).join("");
+    } else {
+      // Strategic Equity Partner model math
+      const equity = rangeVal; // 1.0 - 8.0%
+      const monthlyEquivalent = Math.round((equity * 45000 + 60000) * stageMultiplier);
+      const totalEquivalent = monthlyEquivalent * months;
+
+      let teamCount = "3 Specialists";
+      if (equity >= 5.0 || months >= 9) teamCount = "5 Specialists (Fractional CMO Squad)";
+      else if (equity >= 3.0) teamCount = "3-4 Specialists";
+
+      const lowUsers = Math.round((baseOrders * (equity / 2) * (months / 6)) / 50) * 50;
+      const highUsers = Math.round(lowUsers * 2.8);
+
+      const generatedValuation = Math.round((baseRevenue * (equity / 2) * (months / 6)) / 50000) * 50000;
+
+      if (equivalentValue) equivalentValue.textContent = `₹${totalEquivalent.toLocaleString('en-IN')}`;
+      if (teamSize) teamSize.textContent = teamCount;
+      if (projectedUsers) projectedUsers.textContent = `${lowUsers.toLocaleString('en-IN')} – ${highUsers.toLocaleString('en-IN')} Users`;
+      if (projectedArr) projectedArr.textContent = `+₹${generatedValuation.toLocaleString('en-IN')}`;
+
+      if (sprintTierBadge) {
+        if (equity >= 5.0) {
+          sprintTierBadge.textContent = "Co-Founder Equity Tier (High-Potential)";
+          sprintTierBadge.style.color = "#ffe77f";
+        } else {
+          sprintTierBadge.textContent = "Strategic Branding Partner Tier";
+          sprintTierBadge.style.color = "#34d399";
+        }
+      }
+
+      let services = [
+        "Full Brand Identity, Narrative & UI/UX Redesign",
+        "Fractional CMO & End-to-End Marketing Strategy",
+        "Investor Pitch Deck Polish & VC Introduction Access",
+        "National PR, Tech Spotlight & Viral Social Blitz"
+      ];
+      if (equity >= 3.5) {
+        services.push("Product Hunt #1 Launch Architecture");
+      }
+
+      if (serviceList) {
+        serviceList.innerHTML = services.map(s => `<li><i class="fa-solid fa-circle-check"></i> ${s}</li>`).join("");
+      }
     }
   }
 
