@@ -1097,27 +1097,41 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+}
+
+.stat-value {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.15rem;
+  line-height: 1;
 }
 
 .stat-card h3 {
   display: inline-block;
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
+  font-family: var(--font-heading);
 }
 
 .stat-symbol {
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--bulb-gold);
+  line-height: 1;
+  font-family: var(--font-heading);
+  text-shadow: 0 0 12px rgba(255, 231, 127, 0.4);
 }
 
 .stat-label {
   font-size: 0.85rem;
   color: var(--text-muted);
   font-weight: 500;
-  margin-top: 0.3rem;
+  margin-top: 0.45rem;
+  text-align: center;
 }
 
 .stat-divider {

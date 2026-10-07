@@ -23,7 +23,7 @@ Early-stage startups and consumer brands often build exceptional products but fa
 
 - **Paper Aeroplane Opening Intro**: A glowing paper aeroplane taking off from bottom-left to top-right with animated contrails and the official CREATORS® logo.
 - **Hero Enlightenment Opening**: The website loads in dramatic dark mode with a hanging incandescent lightbulb, pointing arrow, and "Light up Your Business future by toggling this" prompt.
-- **Hero Section with ₹ Metrics**: Live stats formatted in Indian Rupees (₹18 Cr+ client sales generated, 45+ brands scaled).
+- **Hero Section with ₹ Metrics**: Live stats (5+ Brands Scaled, 55k+ Client Sales & Valuation Generated, 1% Performance & Equity Rate, 1.5x Average Revenue Multiplier).
 - **Custom Pricing Callout Banner**: Highlighting the bespoke nature of every brand deal.
 - **Dual-Model Comparison in ₹**: Outlining deliverables of Share per Sales vs. Strategic Equity Partner vs. Cash Retainer models.
 - **Interactive Growth & Revenue Share Simulator (₹ INR)**:
